@@ -6,6 +6,10 @@ import shopkeeper from "./components/shopkeeper";
 import user from "./components/user";
 import admin from "./components/admin";
 import register from "./components/register";
+import home from "./components/home";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import about from './components/about';
+import contact from './components/contact';
 
 
 function App() {
@@ -14,7 +18,10 @@ function App() {
       <BrowserRouter>
         
           <Switch>
-            <Route exact path="/login" component={login}></Route>
+            <Route exact path="/home" component={home}></Route>
+            <Route path="/about" component={about}></Route>
+            <Route path="/contact" component={contact}></Route>
+            <Route path="/login" component={login}></Route>
             <Route path="/register" component={register}></Route>
             <Route path="/user" component={user}></Route>
             <Route path="/shopkeeper" component={shopkeeper}></Route>

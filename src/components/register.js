@@ -1,7 +1,10 @@
 import React from 'react';
+import Navbar from './navbar';
 
 const register = () => {
     return ( 
+        <>
+        <Navbar />
         <div className="register">
             <form action="">
                 <p>Registration Page</p>
@@ -31,6 +34,7 @@ const register = () => {
                 <button name="signup">Signup</button>
             </form>
         </div>
+        </>
      );
 }
  
