@@ -1,3 +1,7 @@
+*{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -6,3 +10,107 @@
   width: 3rem;
   height: 3rem;
 }
+.card-container{
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+}
+.titleandcomplaint{
+    font-size: 2rem;
+    font-weight: 500;
+}
+@media screen and (max-width: 760px) {
+  .card-container{
+    flex-direction: column;
+    align-items: center;
+  }
+  .titleandcomplaint h2{
+    font-size: 20px;
+}
+}
+#white{
+  background-color:#E2E5DE;
+}
+#yellow{
+  background-color:#f4c430;
+}
+#saffron{
+  background-color: #ff9933;
+}
+.page-title{
+  height: 3rem;
+  padding: 0.25rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  }
+  #sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  }
+  #sidebar-wrapper .list-group {
+  width: 15rem;
+  }
+  #page-content-wrapper {
+  min-width: 100vw;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+  }
+  @media (min-width: 768px) {
+  #sidebar-wrapper {
+      margin-left: 0;
+  }
+  #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+      margin-left: -15rem;
+  }
+  }
+
+  #sb .list-group-item{
+    color: black;
+    border:none;
+  }
+#sb .list-group-item.active{
+    color:green;
+    font-weight: 600;
+    font-size: larger;
+  }
+
+
+  input {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none!important;
+  }
+  
+  input:focus {
+    outline:none!important;
+    border-bottom: 1px solid green;
+  }
+  
+  .login{
+    border: green;
+  }

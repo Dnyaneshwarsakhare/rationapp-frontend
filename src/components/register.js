@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from './navbar';
+
 
 const register = () => {
     return ( 
         <>
-        <Navbar />
+        
         <div className="register">
             <form action="">
                 <p>Registration Page</p>
@@ -31,7 +31,7 @@ const register = () => {
                 <input type="text"/><br/>
                 <label htmlFor="repassword">Re-Enter Password</label>
                 <input type="text"/><br/>
-                <button name="signup">Signup</button>
+                <button className="signup btn bg-primary">Signup</button>
             </form>
         </div>
         </>
