@@ -36,7 +36,7 @@ class shopkeeper extends PureComponent {
                 <NavLink to="/shopkeeper/ssdashboard" className="list-group-item list-group-item-action bg-light">Dashboard</NavLink>
                 <NavLink to="/shopkeeper/ssstockdetails" className="list-group-item list-group-item-action bg-light">Stock Details</NavLink>
                 <NavLink to="/shopkeeper/ssuserdetails" className="list-group-item list-group-item-action bg-light">User Details</NavLink>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Sign Out</a>
+                <NavLink to="/shopkeeper/ssuserdetails" className="list-group-item list-group-item-action bg-light">Sign Out</NavLink>
               </div>
             </div>
 

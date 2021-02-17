@@ -1,7 +1,7 @@
 import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { NavLink } from 'react-router-dom';
 
 const home = () => {

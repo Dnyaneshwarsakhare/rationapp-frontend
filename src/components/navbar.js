@@ -10,7 +10,7 @@ const Navbar = () => {
     return ( 
         <>
         <div className="navbar navbar-expand-lg navbar-light bg-dark">
-            <NavLink to="/home" className="brand-logo"><img className="logo" src="ration-logo.png"></img><b> &nbsp;RATION CONTROL</b></NavLink>
+            <NavLink to="/home" className="brand-logo"><img alt="Ration System Logo" className="logo" src="ration-logo.png"></img><b> &nbsp;RATION CONTROL</b></NavLink>
             <ul class="nav nav-pills mb-3 ml-auto" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <NavLink to="/home" className="nav-link" id="" data-bs-toggle="pill"   role="tab" aria-controls="pills-home" aria-selected="true">Home</NavLink>
