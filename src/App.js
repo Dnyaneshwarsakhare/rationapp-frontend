@@ -6,7 +6,6 @@ import 'popper.js/dist/umd/popper.min.js';
 
 import Login from './components/login';
 import shopkeeper from "./components/shopkeeper";
-import User from "./components/user";
 import Admin from "./components/admin";
 import register from "./components/register";
 import home from "./components/home";
@@ -32,7 +31,6 @@ function App() {
             <Route path="/contact" component={contact}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/register" component={register}></Route>
-            <Route path="/user" component={User}></Route>
             <Route path="/shopkeeper" component={shopkeeper}></Route>
             <Route path="/admin" component={Admin}></Route>
             <Route path="/white" component={White}></Route>

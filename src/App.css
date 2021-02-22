@@ -43,7 +43,14 @@
   font-size: 2rem;
   font-weight: 700;
 }
-
+.brand-logo{
+  color:lightseagreen;
+  text-decoration: none;
+}
+.brand-logo:hover{
+  color: aqua;
+  text-decoration: none;
+}
 
 
 
@@ -99,6 +106,11 @@
     font-size: larger;
   }
 
+  #inputbox {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none!important;
+  }
 
   input {
     border: none;
@@ -106,11 +118,36 @@
     outline: none!important;
   }
   
+  #inputbox:focus {
+    outline:none!important;
+    border-bottom: 2px solid rgb(0, 87, 128);
+    background-color: transparent;
+  }
+
   input:focus {
     outline:none!important;
-    border-bottom: 1px solid green;
+    border-bottom: 2px solid rgb(0, 87, 128);
   }
+
+
   
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="mobileno"]:focus,
+input[type="date"]:focus,
+.uneditable-input:focus {   
+  
+  box-shadow: none;
+  outline: 0 none;
+}
+
   .login{
-    border: green;
+    max-width: max-content;
+    min-height: max-content;
+    margin: 0 auto;
+    padding: 5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    
   }
