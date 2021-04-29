@@ -18,6 +18,8 @@ import Saffron from './components/saffron-ration';
 import Complaint from './components/complaint';
 import Navbar from './components/navbar';
 
+
+
 function App() {
   return (
     <div className="App">
@@ -32,7 +34,7 @@ function App() {
             <Route path="/login" component={Login}></Route>
             <Route path="/register" component={register}></Route>
             <Route path="/shopkeeper" component={shopkeeper}></Route>
-            <Route path="/admin" component={Admin}></Route>
+            <Route path="/admin"  component={Admin}></Route>
             <Route path="/white" component={White}></Route>
             <Route path="/yellow" component={Yellow}></Route>
             <Route path="/saffron" component={Saffron}></Route>

@@ -6,14 +6,32 @@ class Complaint extends PureComponent {
     render(){
         return ( 
             <>
-            <div className="complaint m-3" style={{textAlign:'center'}}>
+            <div className="complaint">
                 <form action="">
-                    <label htmlFor="">Gmail ID &nbsp; </label>
-                    <input type="email" name="" id="" placeholder="Enter Your Gmail" />
-                    <br/>
-                    <label htmlFor="">Complaint &nbsp; </label>
-                    <textarea id="w3review" name="" placeholder="Explain Your Query"></textarea><br/>
-                    <input type="submit" className="btn bg-info" value="Submit"/>
+                <h4><strong> Complaint Form</strong></h4>
+                    <div className ="form-group d-flex flex-row pob mt-3">
+                            <input type="text" 
+                            required
+                            className = "form-control"
+                            id="inputbox"
+                            />
+                            <span>Email</span>
+                    </div>
+                    <div className ="form-group d-flex flex-row pob">
+                            
+                            <textarea 
+                            required
+                            className = "form-control"
+                            id="inputbox"
+                            
+                            />
+                            
+                            <span>Explain Your Query</span>
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" value = "Submit" className="btn btn-primary"/>
+                    </div>
+                    
                 </form>
             </div>
             </>

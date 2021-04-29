@@ -7,7 +7,7 @@ class Ssstockdetails extends PureComponent {
         return ( 
             <>
             <div className="ssstockdetails">
-                hiii this is stock details page
+                
             </div>
             </>
          );

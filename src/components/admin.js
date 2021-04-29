@@ -7,10 +7,11 @@ import $ from 'jquery';
 import 'jquery/dist/jquery.min.js';
 import 'popper.js/dist/umd/popper.min.js';
 import { PureComponent } from 'react';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import AdminProfile from './admin/adminProfile';
 import AdminDashboard from './admin/adminDashboard';
 import AdminComplaint from './admin/adminComplaint';
+import AdminShopkeeperDetails from './admin/adminShopkeeperDetails';
 
 
 
@@ -35,6 +36,7 @@ class admin extends PureComponent {
               <div class="list-group list-group-flush" id="sb">
                 <NavLink to="/admin/admin-profile" className="list-group-item list-group-item-action bg-light">Profile</NavLink>
                 <NavLink to="/admin/admin-dashboard" className="list-group-item list-group-item-action bg-light">Dashboard</NavLink>
+                <NavLink to="/admin/admin-shopkeeper-details" className="list-group-item list-group-item-action bg-light">Shopkeeper Data</NavLink>
                 <NavLink to="/admin/admin-complaint" className="list-group-item list-group-item-action bg-light">Complaint</NavLink>
                 <NavLink to="/login" className="list-group-item list-group-item-action bg-light">Sign Out</NavLink>
               </div>
@@ -49,9 +51,10 @@ class admin extends PureComponent {
 
               <div class="container-fluid">
                <Switch>
-                    <Route exact path="/admin/" component={AdminProfile}></Route>
+                    <Route exact path="/admin/"><Redirect to="/admin/admin-profile" /></Route>
                     <Route path="/admin/admin-profile" component={AdminProfile}></Route>
                     <Route path="/admin/admin-dashboard" component={AdminDashboard}></Route>
+                    <Route path="/admin/admin-shopkeeper-details" component={AdminShopkeeperDetails}></Route>
                     <Route path="/admin/admin-complaint" component={AdminComplaint}></Route>
                </Switch>
             

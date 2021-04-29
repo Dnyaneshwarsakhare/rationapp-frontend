@@ -6,7 +6,7 @@ import $ from 'jquery';
 import 'jquery/dist/jquery.min.js';
 import 'popper.js/dist/umd/popper.min.js';
 import { PureComponent } from 'react';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 
 import Ssprofile from './shopkeeper/ssprofile';
 import Ssstockdetails from './shopkeeper/ss-stock-details';
@@ -49,7 +49,7 @@ class shopkeeper extends PureComponent {
 
               <div class="container-fluid">
                <Switch>
-                    <Route exact path="/shopkeeper/" component={Ssprofile}></Route>
+                    <Route exact path="/shopkeeper"><Redirect to="/shopkeeper/ssprofile" /></Route>
                     <Route path="/shopkeeper/ssprofile" component={Ssprofile}></Route>
                     <Route path="/shopkeeper/ssstockdetails" component={Ssstockdetails}></Route>
                     <Route path="/shopkeeper/ssuserdetails" component={Ssuserdetails}></Route>

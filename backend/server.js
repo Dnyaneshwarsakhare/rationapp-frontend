@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cookieParser = require("cookie-parser");
 const authRoutes = require('./routes/authRoutes');
+const jwt = require("jsonwebtoken");
 
 require('dotenv').config();
 
@@ -10,6 +12,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri , {useNewUrlParser : true, useCreateIndex : true,useUnifiedTopology: true });

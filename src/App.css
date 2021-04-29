@@ -52,7 +52,10 @@
   text-decoration: none;
 }
 
-
+.about p{
+  justify-content: center;
+  text-align: justify;
+}
 
 
 
@@ -106,48 +109,160 @@
     font-size: larger;
   }
 
-  #inputbox {
+  #inputbox , textarea{
     border: none;
     border-bottom: 1px solid #000;
     outline: none!important;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
   }
 
   input {
-    border: none;
+    border: 0;
     border-bottom: 1px solid #000;
     outline: none!important;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
   }
   
   #inputbox:focus {
     outline:none!important;
-    border-bottom: 2px solid rgb(0, 87, 128);
+    border-bottom: 2px solid rgb(2, 117, 216);
     background-color: transparent;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
   }
 
   input:focus {
     outline:none!important;
-    border-bottom: 2px solid rgb(0, 87, 128);
+    border-bottom: 2px solid rgb(2, 117, 216);
   }
-
+  .complaint textarea{
+    border: 0;
+    border-bottom: 1px solid #000;
+    outline:none!important;
+    background-color: transparent;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin: 0;
+    padding: 0;
+  }
+  textarea:focus{
+    outline:none!important;
+    border-bottom: 2px solid rgb(2, 117, 216);
+    box-shadow: none;
+    outline: 0 none;
+  }
 
   
 input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="text"]:focus,
 input[type="mobileno"]:focus,
+input[type="radio"]:focus,
 input[type="date"]:focus,
 .uneditable-input:focus {   
-  
   box-shadow: none;
   outline: 0 none;
 }
 
-  .login{
-    max-width: max-content;
-    min-height: max-content;
-    margin: 0 auto;
-    padding: 5rem;
-    padding-top: 0;
-    padding-bottom: 0;
-    
+
+.login{
+  max-width: max-content;
+  min-height: max-content;
+  margin: 0 auto;
+  padding: 5rem;
+  padding-top: 0;
+  padding-bottom: 0;
   }
+.pob{
+  position: relative;
+  
+}
+.pob #inputbox{
+resize: none;
+padding: 5px 0px;
+
+margin: 0;
+}
+
+.complaint textarea:focus{
+  box-shadow: none;
+  outline: 0 none;
+}
+.complaint .pob{
+  position: relative;
+}
+.pob span{
+  position: absolute;
+  left: 0;
+  padding: 10px 0;
+  transition: 0.3s;
+  top: 0em;
+  pointer-events: none;
+  
+}
+
+.complaint textarea span{
+  position: absolute;
+  left: 0;
+  padding: 1px 0;
+  transition: 0.3s;
+  top: 0em;
+  pointer-events: none;
+}
+select:focus{
+  outline: none;
+  border-style: none;
+  box-shadow: none;
+}
+.pob input:focus ~ span,
+.complaint textarea:focus ~ span,
+.complaint textarea:valid ~ span,
+.pob input:valid ~ span{
+  transform: translateY(-20px);
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(2, 117, 216); 
+}
+
+.complaint{
+  max-width: max-content;
+  min-height: max-content;
+  text-decoration: none;
+  padding: 5rem;
+  margin: 0 auto;
+}
+
+input[type="radio"]{
+  font-size: 2.25rem;
+  height: 15px;
+}
+
+
+.errors,.emailError, .passwordError,.firstname-error,.lastname-error,.mobileno-error,.username-error{
+  left: 0;
+  padding: 0;
+  top: 0;
+  text-align: left;
+  font-size: 14px;
+  color:#f43730;
+}
+.errorstitle{
+
+  padding: 0;
+
+  padding-bottom: 5px;
+  top: 0;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 16px;
+  color:#f43730;
+}
+
+.containerfordashboard{
+  display: flex;
+}
+.admin-shopkeeper-details{
+  width: 100%;
+}
