@@ -21,7 +21,8 @@ class shopkeeper extends PureComponent {
           e.preventDefault();
           $("#wrapper").toggleClass("toggled");
          });
-        }
+    }
+    
         render(){
         return ( 
         <>

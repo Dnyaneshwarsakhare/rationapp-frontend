@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch , Redirect} from "react-router-dom";
 import 'jquery/dist/jquery.min.js';
 import 'popper.js/dist/umd/popper.min.js';
 
@@ -27,7 +27,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
           <Switch>
-          <Route exact path="/"  component={home}></Route>
+          <Route exact path="/"><Redirect to="/home" /></Route>
             <Route exact path="/home" component={home}></Route>
             <Route path="/about" component={About}></Route>
             <Route path="/contact" component={contact}></Route>

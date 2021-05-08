@@ -1,11 +1,11 @@
 import React from 'react';
 import { PureComponent } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink , useHistory} from 'react-router-dom';
 
 class Login extends PureComponent {
+   
     constructor(props) {
         super(props);
-
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit= this.onSubmit.bind(this);
@@ -42,6 +42,7 @@ class Login extends PureComponent {
         }
 
         try{
+            
             const res = await fetch('http://localhost:5000/login',{
                 method: 'POST',
                 body : JSON.stringify({ email : user.email , password : user.password}),
@@ -49,8 +50,10 @@ class Login extends PureComponent {
             });
             const data = await res.json();
             console.log(data);
+          
             if(data.user){
-                window.location.assign('/shopkeeper');
+                // window.location.assign('/shopkeeper');
+                this.props.history.push("/shopkeeper");
             } 
             if(data.errors){
                 this.setState({errormessage:data.errors});

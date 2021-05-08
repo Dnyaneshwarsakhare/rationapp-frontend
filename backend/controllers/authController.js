@@ -1,9 +1,12 @@
 const User = require('../models/user');
+const Stock = require('../models/stock');
 const jwt = require('jsonwebtoken');
 const { MongoClient } = require("mongodb");
 const mongoose = require('mongoose');
 const cors = require('cors');
-
+const { response } = require('express');
+const cookieParser = require("cookie-parser");
+const bcrypt = require('bcrypt');
 
 const handleErrors = (err) =>{
     console.log(err.message, err.code);
@@ -36,30 +39,16 @@ const handleErrors = (err) =>{
     return errors;
 }
 const maxAge = 3*60*60*24;
-const createToken = (id) => {
-    return jwt.sign({ id }, 'dnynu secret',{
-        expiresIn : maxAge
-    });
-}
 
-
-module.exports.register_get = (req ,res) => {
-    res.render('register');
-}
-module.exports.login_get = (req ,res) => {
-    res.render('login');
-}
 
 module.exports.register_post = async (req ,res) => {
     const {firstname,lastname,mobileno,email,username,dob,gender,password} = req.body;
-
+    let token;
     try{
         const emailTaken = await User.findOne({ email });
         if (emailTaken) return res.status(400).json({ err: "This Email is already in use!" });
-
         const user = await User.create({firstname,lastname,mobileno,email,username,dob,gender,password});
-
-        const token = createToken(user._id);
+        token = user.generateAuthToken(user._id);
         res.cookie('jwt', token,{httpOnly : true, maxAge : maxAge*1000 });
         res.status(201).json({ user : user._id});
     }catch(err){
@@ -70,10 +59,10 @@ module.exports.register_post = async (req ,res) => {
 
 module.exports.login_post = async (req ,res) => {
     const {email, password} = req.body;
-
+    let token;
     try{
         const user = await User.login(email, password);
-        const token = createToken(user._id);
+        token = user.generateAuthToken(user._id);
         res.cookie('jwt', token, { httpOnly : true, maxAge : maxAge*1000});
         res.status(200).json({user:user._id});
     }catch(err){
@@ -83,10 +72,14 @@ module.exports.login_post = async (req ,res) => {
 }
 
 module.exports.shopkeeper_get = (req ,res) => {
-    const {username} = req.params.username;
-    User.findOne(username)
-    .then(user => res.json(user))
-    .catch(err => res.status(400).json("Error : " + err));
+    res.json(req.rootUser);
+    // const {username} = req.params.username;
+    // User.findOne(username)
+    // .then(
+    //     user => res.json({user}),
+    //     res.send(req.rootUser)
+    // )
+    // .catch(err => res.status(400).json("Error : " + err));
 }
 
 module.exports.update_post = (req ,res) => {
@@ -148,3 +141,28 @@ module.exports.user_delete = (req ,res) => {
 //     }); 
     
 // }
+
+
+module.exports.stock_get = (req ,res) => {
+    Stock.find()
+    .then(stocks => res.json(stocks))
+    .catch(err => res.status(400).json("Error : " + err));
+}
+
+module.exports.rationUser_get = (req ,res) => {
+    User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json("Error : " + err));
+}
+
+
+module.exports.rationUser_post = (req ,res) => {
+    const {email} = req.params.email;
+    User.findOne(email)
+    .then(user => {
+        user.save()
+        .then(()=> res.json('status updated'))
+        .catch(err => res.status(400).json("Error :" +err));
+    })
+    .catch(err => res.status(400).json("Error : " + err));
+}

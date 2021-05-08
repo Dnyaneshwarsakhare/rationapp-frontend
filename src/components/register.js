@@ -5,7 +5,7 @@ import  DatePicker  from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import 'jquery/dist/jquery.min.js';
 import { Redirect } from 'react-router';
-
+import { useHistory } from "react-router-dom";
 
 // const emailError = document.querySelector('.emailError');
 // const passwordError = document.querySelector('.passwordError');
@@ -144,6 +144,7 @@ class Register extends PureComponent {
   
 
     onSubmit = async (e) =>{
+        
         e.preventDefault()
         const user = {
             firstname : this.state.firstname,
@@ -165,7 +166,8 @@ class Register extends PureComponent {
             const data = await res.json();
             console.log(data);
             if(data.user){
-                window.location.assign('/shopkeeper');
+                // window.location.assign('/shopkeeper');
+                this.context.history.push("/shopkeeper");
             } 
             if(data.err){
                 this.setState({errormessage:data.err});
@@ -177,9 +179,10 @@ class Register extends PureComponent {
 
         console.log(user);
 
-        axios.post('http://localhost:5000/shopkeeper/ssprofile/',user)
+        axios.post('http://localhost:5000/register',user)
         .then(res => 
-            console.log(res.data)
+            console.log(res.data),
+            this.props.history.push("/shopkeeper")
         );
     }
 

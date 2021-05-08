@@ -19,7 +19,6 @@
     "nodemon": "^2.0.7",
     "popper.js": "^1.16.1",
     "react": "^17.0.1",
-    "proxy": "http://localhost:5000",
     "react-bootstrap": "^1.4.3",
     "react-datepicker": "^3.5.0",
     "react-dom": "^17.0.1",

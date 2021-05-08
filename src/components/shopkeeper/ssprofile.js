@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import  DatePicker  from "react-datepicker";
-
+import {useHistory} from "react-router-dom";
 
 const validEmailRegex =
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -16,28 +16,43 @@ var pattern = /^\d{10}$/;
 
 
 
-
 class Ssprofile extends PureComponent {
     
-    componentDidMount(){
+    async componentDidMount(){
+            
+        // axios.get("http://localhost:5000/shopkeeper/ssprofile/"+this.props.match.params.username)
+        // .then(res =>{
+        //     this.setState({
+        //         users : res.data
+        //     })
+        //     res.json();
+        // }).catch(err => console.log(err));
 
-        
 
-        axios.get("http://localhost:5000/shopkeeper/ssprofile/"+this.props.match.params.username)
-        .then(res =>{
-            this.setState({
-                firstname : res.data.firstname,
-                lastname : res.data.lastname,
-                mobileno : res.data.mobileno,
-                email : res.data.email,
-                username : res.data.username,
-                password : res.data.password,
-                gender : res.data.duration,
-                dob : new Date(res.data.dob)
+        try{
+            const res = await fetch('http://localhost:5000/shopkeeper/ssprofile/',{
+                method : "GET",
+                headers:{
+                    Accept : "application/json",
+                    "Content-Type":"application/json",
+                    "Access-Control-Allow-Origin" : "*", 
+                    "Access-Control-Allow-Credentials" : true 
+                },
+                withCredentials:true,
             })
-            res.data.json();
-        })
-        .catch(err => console.log(err));
+
+            const data = await res.json()
+            console.log(data);
+
+            if(!res.status === 200){
+                const error = new Error(res.error);
+                throw error;
+            }
+
+        }catch(err){
+            console.log(err);
+            this.props.history.push('/login');
+        }
 
     }
     
@@ -54,18 +69,11 @@ class Ssprofile extends PureComponent {
         this.onChangeGender = this.onChangeGender.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit= this.onSubmit.bind(this);
-
+        
         
 
         this.state = {
-            firstname: '',
-            lastname: '',
-            mobileno: '',
-            email : '',
-            username: '',
-            dob: new Date(),
-            gender: '',
-            password: '',
+            users : [],
             errormessage:'',
             errors : {
                 username: '',
@@ -176,7 +184,8 @@ class Ssprofile extends PureComponent {
         }
 
         axios.post('http://localhost:5000/shopkeeper/ssprofile/update/'+this.props.match.params.id,user)
-        .then(res => console.log(res.data));
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
 
     }
 
@@ -189,10 +198,10 @@ class Ssprofile extends PureComponent {
            
             
                 <h4><strong> Profile Details</strong></h4>
-                {/* <NavLink to={"/shopkeeper/ssprofile/update/"+props.user._id} style={{color:'white'}} className="btn bg-dark">click here to Update</NavLink>  */}
+                 {/* <NavLink to={"/shopkeeper/ssprofile/update/"+this.state.users._id} style={{color:'white'}} className="btn bg-dark">click here to Update</NavLink>   */}
                 
 
-                <form onSubmit={this.onSubmit} >
+                <form method="GET" onSubmit={this.onSubmit} >
                     <div className ="form-group  pob" style={{justifyItems:"end"}} >
                             
                             <input type="text" 
@@ -201,7 +210,7 @@ class Ssprofile extends PureComponent {
                             id="inputbox"
                             
                             name="firstname"
-                            value = {this.state.firstname}
+                            value = {this.state.users.firstname}
                             onChange = {this.onChangeFirstname}
                             
                             />
@@ -215,6 +224,7 @@ class Ssprofile extends PureComponent {
                             required
                             className = "form-control"
                             id="inputbox"
+                            name="lastname"
                             value = {this.state.lastname}
                             onChange = {this.onChangeLastname}
                             />
@@ -282,6 +292,7 @@ class Ssprofile extends PureComponent {
                             placeholderText="Date of birth"
                             dateFormat="dd/MM/yyyy"
                             autoComplete="off"
+                            name="dob"
                             selected ={this.state.dob}
                             onChange ={ this.onChangeDob}
                             />
