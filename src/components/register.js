@@ -1,11 +1,14 @@
 import React from 'react';
 import { PureComponent } from 'react';
 import axios from 'axios';
+import { withRouter} from 'react-router-dom';
 import  DatePicker  from "react-datepicker";
+import Navbar from '../components/navbar';
 import "react-datepicker/dist/react-datepicker.css";
 import 'jquery/dist/jquery.min.js';
-import { Redirect } from 'react-router';
-import { useHistory } from "react-router-dom";
+import { trackPromise } from 'react-promise-tracker';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // const emailError = document.querySelector('.emailError');
 // const passwordError = document.querySelector('.passwordError');
@@ -41,8 +44,8 @@ class Register extends PureComponent {
             mobileno: '',
             email : '',
             username: '',
-            dob: new Date(),
-            gender: '',
+            dob: "",
+            gender: 'Male',
             password: '',
             errormessage:'',
             errors : {
@@ -154,24 +157,44 @@ class Register extends PureComponent {
             username : this.state.username,
             dob : Date.parse(this.state.dob),
             gender : this.state.gender,
-            password : this.state.password
+            password : this.state.password,
         }
 
         try{
             const res = await fetch('http://localhost:5000/register',{
                 method: 'POST',
-                body : JSON.stringify({ email : user.email , password : user.password}),
+                body : JSON.stringify(user),
                 headers: { "Content-Type":"application/json" }
             });
             const data = await res.json();
             console.log(data);
             if(data.user){
                 // window.location.assign('/shopkeeper');
-                this.context.history.push("/shopkeeper");
+                this.props.history.push("/login");
+                toast.success("Registered successfully");
             } 
             if(data.err){
                 this.setState({errormessage:data.err});
+                console.log(this.state.errormessage);
+                toast.error("Registration failed: "+this.state.errormessage+"!",{
+                    position:"top-center"
+                });
             }
+           
+            // const res = axios.post('http://localhost:5000/register',user)
+            // const data = res.json()
+            // console.log(data);
+            // if(data.err){
+            //     this.setState({errormessage:data.err});
+            // }
+            // console.log(this.state.errormessage);
+            //.then(res => 
+            //console.log(res.data),
+            //toast.success("Registered Successfull!",{
+            //    position : "top-center",
+            //}))
+            //.catch(err =>  toast.error("Problem Occured while registering "+err,{position : "top-center"}))
+        
         }
         catch (err){
             console.log(err);
@@ -179,11 +202,25 @@ class Register extends PureComponent {
 
         console.log(user);
 
-        axios.post('http://localhost:5000/register',user)
-        .then(res => 
-            console.log(res.data),
-            this.props.history.push("/shopkeeper")
-        );
+        // this.setState({
+        //     firstname: '',
+        //     lastname: '',
+        //     mobileno: '',
+        //     email : '',
+        //     username: '',
+        //     dob: "",
+        //     gender: 'Male',
+        //     password: '',
+        //     errormessage:"",
+        //     errors : {
+        //         username: '',
+        //         email: '',
+        //         password: '',
+        //         mobileno:'',
+        //     }
+            
+        // });
+        
     }
 
 
@@ -193,6 +230,8 @@ class Register extends PureComponent {
     render(){
         return ( 
             <>
+            <Navbar />
+            <div className="container">
             <div className="login mt-3">
                 <h4><strong> Register</strong></h4>
                 <p>( Only shopkeeper & admin can register )</p>
@@ -202,7 +241,7 @@ class Register extends PureComponent {
                             
                             <input type="text" 
                             required
-                            className = "form-control "
+                            className = "form-control"
                             id="inputbox"
                             autoFocus
                             name="firstname"
@@ -261,8 +300,7 @@ class Register extends PureComponent {
                             <span>Email</span>
                             {this.state.errors.email.length > 0 && 
                             <div className='emailError'>{this.state.errors.email}</div>}
-                            <div className="errors">{this.state.errormessage}</div>
-                            {/* <div className="emailError">{this.state.errormessage.email}</div> */}
+                            <div className="emailError">{this.state.errormessage}</div>
                     </div>
                     <div className ="form-group  pob">
                             
@@ -293,36 +331,18 @@ class Register extends PureComponent {
                             
                             
                     </div>
-                    <div className ="form-group  pob mt-4" onChange={this.onChangeGender}>
+                    <div className ="form-group  pob mt-4" >
                     
-                        <div className="radio" >
-
-                        
-                        
-                                                
-
-                                <input
-                                type="radio"
-                                value="Male"
-                                name="male"
-                                
-                                
-                                />Male
-                                <input
-                                type="radio"
-                                value="Female"
-                                name="female"
-                                
-                                />Female                                
-                                <input
-                                type="radio"
-                                value="Other"
-                                name="other"
-                                
-                                />Other
-                          
-                        </div>
-                          
+                        <select ref="UserInput" onChange={this.callThis} className="form-control form-select form-select-sm" 
+                        required 
+                        aria-label=".form-select-sm example"
+                        value = {this.state.gender}
+                        id="gender"
+                        onChange = {this.onChangeGender}>
+                            <option selected value = "Male">Male</option>
+                            <option value = "Female">Female</option>
+                            <option value = "Other">Other</option>
+                        </select>
                           
                     </div>
                     <div className ="form-group pob">
@@ -348,13 +368,13 @@ class Register extends PureComponent {
                 
                 </form>
             </div>
-
-
+            <ToastContainer />
+            </div>
             </>
         );
     } 
 }
  
-export default Register;
+export default withRouter(Register);
 
 

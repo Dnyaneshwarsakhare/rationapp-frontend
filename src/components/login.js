@@ -1,30 +1,47 @@
 import React from 'react';
 import { PureComponent } from 'react';
-import { NavLink , useHistory} from 'react-router-dom';
+import { NavLink , Redirect, useHistory, withRouter} from 'react-router-dom';
+import jwt_decode from "jwt-decode";
+import { trackPromise } from 'react-promise-tracker';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import $ from 'jquery';
+import 'jquery/dist/jquery.min.js';
+import Navbar from '../components/navbar';
 
 class Login extends PureComponent {
-   
+    
     constructor(props) {
         super(props);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onEmailformail = this.onEmailformail.bind(this);
+        this.onEmailSend = this.onEmailSend.bind(this);
         this.onSubmit= this.onSubmit.bind(this);
+
 
         this.state = {
             email: '',
             password : '',
-            errormessage:{
-                email:'',
-                password :''
-            }
+            emailformail:'',
+            errormessage:"",
         };
       }
 
-    
+      componentDidMount(){
+        
+    }
     
     onChangeEmail(e){
         this.setState({
             email : e.target.value
+        });
+    }
+    
+    onEmailformail(e){
+        this.setState({
+            emailformail : e.target.value
         });
     }
     onChangePassword(e){
@@ -32,6 +49,29 @@ class Login extends PureComponent {
             password : e.target.value
         });
     }
+
+    onEmailSend = async (e) => {
+        e.preventDefault()
+        const useremail = {
+            emailformail : this.state.emailformail
+        }
+        
+        
+        await axios.post('http://localhost:5000/forgot-password',useremail,{
+            headers: {
+            'Content-Type': 'application/json'
+            }
+          })
+        .then((response) => {
+            console.log(response.data);
+          }).catch( (error) => {
+            console.log(error);
+            toast.warn("user not found",{
+                position:"top-center"
+            })
+          })
+    }
+    
     
     onSubmit = async (e) =>{
         e.preventDefault()
@@ -40,30 +80,50 @@ class Login extends PureComponent {
             email : this.state.email,
             password : this.state.password
         }
-
+        
         try{
             
-            const res = await fetch('http://localhost:5000/login',{
+            const res = await trackPromise( fetch('http://localhost:5000/login',{
                 method: 'POST',
-                body : JSON.stringify({ email : user.email , password : user.password}),
+                body : JSON.stringify(user),
                 headers: { "Content-Type":"application/json" }
-            });
+            }));
             const data = await res.json();
-            console.log(data);
-          
-            if(data.user){
-                // window.location.assign('/shopkeeper');
-                this.props.history.push("/shopkeeper");
-            } 
+            console.log(data.token);
+            
             if(data.errors){
                 this.setState({errormessage:data.errors});
+                console.log(data.errors);
             }
+            localStorage.setItem('Token',data.token);
+            try{
+              const  currentuser=jwt_decode(data.token);
+              if(currentuser){
+                console.log(JSON.stringify(currentuser));
+                localStorage.setItem('CurrentUser',JSON.stringify(currentuser));
+                this.props.history.push("/shopkeeper/ssprofile");
+                toast.success("Login Successfull !",{
+                    position : "top-center",
+                });
+            }
+            }
+            catch(Error){
+                 
+                toast.error("Login Failed, Try again!",{
+                    position : "top-center",
+                });
+                          
+            }
+            // console.log(loggedUser);
+          
+            
+              
         }
         catch (err){
             console.log(err);
         }
 
-        console.log(user);
+        
 
         // axios.post('http://localhost:5000/login',user)
         // .then(res => 
@@ -79,11 +139,33 @@ class Login extends PureComponent {
     render(){
         return ( 
             <>
-            
+            <Navbar />
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Password Reset</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label htmlFor="email">Enter your Email</label><br />
+                    <input type="email" autoFocus required name="emailformail" onChange={this.onEmailformail} id="email" /><br />
+                    <small>Email should be available in our system</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"data-dismiss="modal" onClick={this.onEmailSend}>Send</button>
+                </div>
+                </div>
+            </div>
+            </div>
 
-            <div className="login mt-3 ">
-                <h4><strong> Login</strong></h4>
-                <p>( Only shopkeeper & admin can login )</p>
+        <div className="container">
+            <div className="login mt-3">
+                <h3><strong> Login</strong></h3>
+                <p>( Shopkeeper login panel )</p>
                 <div className="errorstitle">{this.state.errormessage.message}</div>
                 <form  onSubmit={this.onSubmit} >
                     <div className ="form-group pob" >
@@ -116,17 +198,25 @@ class Login extends PureComponent {
                     <div className="form-group">
                         <input type="submit" value = "Login" className="btn btn-primary"/>
                     </div>
-                    <p>Dont have an account, <NavLink to="/register"> Register here</NavLink></p>
-                
+                    
+
+                  
+                    <button type="button" class="btn btn-link shadow-none" data-toggle="modal" data-target="#exampleModal">
+                        Forgot password ?
+                    </button>
+                    <p>Don't have an account, <NavLink to="/register"><button className="btn btn-outline-primary btn-sm">Register here</button></NavLink></p>
+                    <p>You're an Admin, <NavLink to="/admin-panel-login"><button className="btn btn-outline-primary btn-sm">Click here</button></NavLink></p>
                 </form>
             </div>
-
-
+            
+             <ToastContainer />
+             </div>
             </>
         );
+        
     } 
 }
  
-export default Login;
+export default withRouter(Login);
 
 

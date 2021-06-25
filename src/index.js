@@ -3,11 +3,35 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { usePromiseTracker } from "react-promise-tracker";
+import Loader from 'react-loader-spinner';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+
+export const LoadingIndicator = (props) => {
+    const { promiseInProgress } = usePromiseTracker({delay : 1000});
+    return ( 
+      promiseInProgress && (
+         <div
+           style={{
+             width: "100%",
+             height: "100",
+             display: "flex",
+             justifyContent: "center",
+             alignItems: "center"
+           }}
+         >
+           <Loader type="ThreeDots" color="#0275d8" height="100" width="100" />
+         </div>  )
+    );
+}
 
 ReactDOM.render(
-  <React.StrictMode>
+  <div>
     <App />
-   </React.StrictMode>,
+    <LoadingIndicator/>
+    </div>
+   ,
   document.getElementById('root')
 );
 

@@ -3,11 +3,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
 
 import logo from "../../src/lo1.gif";
+import { useEffect } from 'react';
 
 
 
 
-const Navbar = () => {
+const Navbar2 = () => {
+    const[user , setUser] = useState();
+        useEffect(()=>{
+            if(localStorage.getItem('Token')!=null && localStorage.getItem('Token')!='undefined' && localStorage.getItem('CurrentUser')!=null && localStorage.getItem('CurrentUser')!='undefined')
+            {
+                var user=localStorage.getItem('CurrentUser');
+                var json = JSON.parse(user);
+                var obj=json["user"];
+                var cid=obj["id"];
+                var name = obj["name"]
+                setUser(name);
+            }
+        })
+
         return ( 
             <>
             <div className="navbar navbar-expand-lg navbar-light bg-dark">
@@ -23,7 +37,7 @@ const Navbar = () => {
                         <NavLink to="/contact" className="nav-link" id=""  href="contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</NavLink>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <NavLink to="/login" className="nav-link" id=""  href="login" role="tab" aria-controls="pills-contact" aria-selected="false">Login</NavLink>
+                        <h5 className="nav-link text-white border" id=""   role="tab" aria-controls="pills-contact" aria-selected="false">{user}</h5>
                     </li>
                 </ul>
             </div>
@@ -32,4 +46,4 @@ const Navbar = () => {
         
 }
  
-export default Navbar;
+export default Navbar2;

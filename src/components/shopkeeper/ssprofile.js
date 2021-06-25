@@ -2,8 +2,11 @@ import React  from 'react';
 import { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 import  DatePicker  from "react-datepicker";
 import {useHistory} from "react-router-dom";
+
+// import Header from 'react-header';
 
 const validEmailRegex =
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -19,40 +22,41 @@ var pattern = /^\d{10}$/;
 class Ssprofile extends PureComponent {
     
     async componentDidMount(){
+        if(localStorage.getItem('Token')!=null && localStorage.getItem('Token')!='undefined' && localStorage.getItem('CurrentUser')!=null && localStorage.getItem('CurrentUser')!='undefined')
+        {
             
-        // axios.get("http://localhost:5000/shopkeeper/ssprofile/"+this.props.match.params.username)
-        // .then(res =>{
-        //     this.setState({
-        //         users : res.data
-        //     })
-        //     res.json();
-        // }).catch(err => console.log(err));
-
-
-        try{
-            const res = await fetch('http://localhost:5000/shopkeeper/ssprofile/',{
-                method : "GET",
-                headers:{
-                    Accept : "application/json",
-                    "Content-Type":"application/json",
-                    "Access-Control-Allow-Origin" : "*", 
-                    "Access-Control-Allow-Credentials" : true 
-                },
-                withCredentials:true,
-            })
-
-            const data = await res.json()
-            console.log(data);
-
-            if(!res.status === 200){
-                const error = new Error(res.error);
-                throw error;
+            this.props.history.push("/shopkeeper/ssprofile/");
+            if(localStorage.getItem('CurrentUser')!=null && localStorage.getItem('CurrentUser')!='undefined'){
+                
+            var user=localStorage.getItem('CurrentUser');
+            var json = JSON.parse(user);
+            var obj=json["user"];
+            var cid=obj["id"];
+            console.log(cid);
+            }else{
+                this.props.history.push("/login");
             }
-
-        }catch(err){
-            console.log(err);
-            this.props.history.push('/login');
+            // headers = new HttpHeaders().set('Token',localStorage.getItem('Token'));
+        axios.get("http://localhost:5000/shopkeeper/ssprofile/"+cid, {
+            headers: {
+                'token': `${localStorage.getItem('Token')}`
+            }
+          })
+        .then(res =>{
+            this.setState({
+                users : res.data
+            })
+            console.log(this.state.users);
+        }).catch(err => console.log(err));
+           
+        }else{
+            
+            this.props.history.push("/login");
+            toast.warn("You don't have access, Requires login",{
+                position:"top-center"
+            })
         }
+           
 
     }
     
@@ -73,7 +77,16 @@ class Ssprofile extends PureComponent {
         
 
         this.state = {
-            users : [],
+            users : {
+                firstname:'',
+                lastname : "",
+                mobileno : "",
+                email : "",
+                username : "",
+                dob : "",
+                gender : "",
+                password : ""
+        },
             errormessage:'',
             errors : {
                 username: '',
@@ -130,61 +143,70 @@ class Ssprofile extends PureComponent {
 
     onChangeFirstname(e){
         this.setState({
-            firstname : e.target.value
+            users:{firstname : e.target.value}
         });
     }
     onChangeLastname(e){
         this.setState({
-            lastname : e.target.value
+            users:{lastname : e.target.value}
         });
     }
     onChangeMobileno(e){
         this.setState({
-            mobileno : e.target.value
+            users:{mobileno : e.target.value}
         });
     }
     onChangeEmail(e){
         this.setState({
-            email : e.target.value
+            users:{email : e.target.value}
         });
     }
     onChangeUsername(e){
         this.setState({
-            username : e.target.value
+            users:{username : e.target.value}
         });
     }
-    onChangeDob(date){
+    onChangeDob(e){
         this.setState({
-            dob : date
+            users:{dob : e.target.value}
         });
     }
     onChangeGender(e){
         this.setState({
-            gender : e.target.value
+            users:{gender : e.target.value}
         });
-        console.log(this.state.gender);
+        console.log(this.state.users.gender);
     }
     onChangePassword(e){
         this.setState({
-            password : e.target.value
+            users:{password : e.target.value}
         });
     }
 
     onSubmit = async (e) =>{
         e.preventDefault()
         const user = {
-            firstname : this.state.firstname,
-            lastname : this.state.lastname,
-            mobileno : this.state.mobileno,
-            email : this.state.email,
-            username : this.state.username,
-            dob : Date.parse(this.state.dob),
-            gender : this.state.gender,
-            password : this.state.password
+            firstname : this.state.users.firstname,
+            lastname : this.state.users.lastname,
+            mobileno : this.state.users.mobileno,
+            email : this.state.users.email,
+            username : this.state.users.username,
+            dob : this.state.users.dob,
+            gender : this.state.users.gender,
+            password : this.state.users.password
         }
 
-        axios.post('http://localhost:5000/shopkeeper/ssprofile/update/'+this.props.match.params.id,user)
-        .then(res => console.log(res.data))
+        var usedr=localStorage.getItem('CurrentUser');
+        var json = JSON.parse(usedr);
+        var obj=json["user"];
+        var cid=obj["id"];
+        
+        axios.put(`http://localhost:5000/shopkeeper/ssprofile/update/`+cid,user)
+        .then(res => {
+            console.log(res);
+            window.alert("Updated Successfully");
+        }
+        )
         .catch(err => console.log(err));
 
     }
@@ -194,14 +216,15 @@ class Ssprofile extends PureComponent {
     render() { 
         return ( 
             <>
+            <div className="container">
             <div className="ssprofile login mt-3">
            
             
                 <h4><strong> Profile Details</strong></h4>
                  {/* <NavLink to={"/shopkeeper/ssprofile/update/"+this.state.users._id} style={{color:'white'}} className="btn bg-dark">click here to Update</NavLink>   */}
                 
-
-                <form method="GET" onSubmit={this.onSubmit} >
+                <NavLink className="btn btn-primary" to="/shopkeeper/ssprofile/update">Edit Profile</NavLink>
+                <form method="POST" onSubmit={this.onSubmit} >
                     <div className ="form-group  pob" style={{justifyItems:"end"}} >
                             
                             <input type="text" 
@@ -211,7 +234,7 @@ class Ssprofile extends PureComponent {
                             
                             name="firstname"
                             value = {this.state.users.firstname}
-                            onChange = {this.onChangeFirstname}
+                            onChange = {e => this.onChangeFirstname(e)}
                             
                             />
                             <span>Firstname</span>
@@ -225,8 +248,8 @@ class Ssprofile extends PureComponent {
                             className = "form-control"
                             id="inputbox"
                             name="lastname"
-                            value = {this.state.lastname}
-                            onChange = {this.onChangeLastname}
+                            value = {this.state.users.lastname}
+                            onChange = {e => this.onChangeLastname(e)}
                             />
                             <span>Lastname</span>
                             {/* <div className="lastname-error">{this.state.errormessage.lastname}</div> */}
@@ -242,7 +265,7 @@ class Ssprofile extends PureComponent {
                             maxLength="10"
                             name="mobileno"
                             
-                            value = {this.state.mobileno}
+                            value = {this.state.users.mobileno}
                             onChange = {this.onChangeMobileno}
                             onInput={this.handleChange} noValidate
                             />
@@ -258,10 +281,10 @@ class Ssprofile extends PureComponent {
                             className = "form-control"
                             id="inputbox"
                             name="email"
-                            value = {this.state.email}
+                            value = {this.state.users.email}
                             // onChange = {this.onChangeEmail}
-                            onChange={ this.onChangeEmail} noValidate
-                            onInput={this.handleChange}
+                            onChange={ this.onChangeEmail} 
+                            onInput={this.handleChange}noValidate
                             />
                             <span>Email</span>
                             {this.state.errors.email.length > 0 && 
@@ -276,7 +299,7 @@ class Ssprofile extends PureComponent {
                             name="username"
                             className = "form-control"
                             id="inputbox"
-                            value = {this.state.username}
+                            value = {this.state.users.username}
                             onInput={this.handleChange} noValidate
                             onChange = {this.onChangeUsername}
                             />
@@ -287,13 +310,14 @@ class Ssprofile extends PureComponent {
                     </div>
                     <div className ="form-group  pob">
                             
-                            <DatePicker
-                            id="inputbox"
+                            <input
+                            type="text"
                             placeholderText="Date of birth"
                             dateFormat="dd/MM/yyyy"
                             autoComplete="off"
+                            value = {(this.state.users.dob)}
                             name="dob"
-                            selected ={this.state.dob}
+                            selected ={this.state.users.dob}
                             onChange ={ this.onChangeDob}
                             />
                             
@@ -301,31 +325,17 @@ class Ssprofile extends PureComponent {
                     </div>
                     <div className ="form-group  pob mt-4" onChange={this.onChangeGender}>
                     
-                        <div className="radio" >
-
-                        
-                        
-                                                
-
-                                <input
-                                type="radio"
-                                value="Male"
-                                name="male"
-                                
-                                
-                                />Male
-                                <input
-                                type="radio"
-                                value="Female"
-                                name="female"
-                                
-                                />Female                                
-                                <input
-                                type="radio"
-                                value="Other"
-                                name="other"
-                                
-                                />Other
+                        <div className="" >
+                            <select ref="UserInput" onChange={this.callThis} className="form-control " 
+                            required 
+                          
+                            value = {this.state.users.gender}
+                            id="gender"
+                            onChange = {this.onChangeGender}>
+                                <option  value = "Male">Male</option>
+                                <option value = "Female">Female</option>
+                                <option value = "Other">Other</option>
+                            </select>
                           
                         </div>
                           
@@ -337,10 +347,11 @@ class Ssprofile extends PureComponent {
                             required
                             className = "form-control"
                             id="inputbox"
-                            value = {this.state.password}
+                            value = {this.state.users.password}
                             onChange = {this.onChangePassword}
                             onInput={this.handleChange} noValidate
                             name="password"
+                            disabled
                             />
                             <span>Password</span>
                             {this.state.errors.password.length > 0 && 
@@ -355,10 +366,11 @@ class Ssprofile extends PureComponent {
                 </form>
             </div>
 
-            
+            </div>
             </>
          );
     }
 }
  
 export default Ssprofile;
+

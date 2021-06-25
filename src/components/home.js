@@ -1,15 +1,17 @@
 import React from 'react';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from "react-bootstrap";
 import { NavLink } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import Navbar from '../components/navbar';
 
 const home = () => {
     return ( 
         <>
-    
+        <Navbar />
         <div className="home m-3">
-            <div className="page-title">Tricolour Ration Cards Scheme</div>
+            <div className="page-title"><h2><strong>Tricolour Ration Cards</strong></h2></div>
+            <div className="hr mt-6" />
             <div className="card-container">
                 <Card border="dark" style={{ width: '18rem' }} className="m-2" id="white">
                     <Card.Header><b>WHITE</b></Card.Header>
@@ -46,6 +48,7 @@ const home = () => {
                 </Card>
             </div>
         </div>
+        <ToastContainer />
         </>
      );
 }

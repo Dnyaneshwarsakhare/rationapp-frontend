@@ -1,5 +1,6 @@
 *{
   font-family: 'Josefin Sans', sans-serif;
+  /* font-family: "AvenirNext","Helvetica Neue",Helvetica,Arial,sans-serif; */
 }
 
 .App {
@@ -161,19 +162,27 @@ input[type="text"]:focus,
 input[type="mobileno"]:focus,
 input[type="radio"]:focus,
 input[type="date"]:focus,
+input[type="Number"]:focus,
 .uneditable-input:focus {   
   box-shadow: none;
   outline: 0 none;
 }
 
-
+.container{
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  
+}
 .login{
-  max-width: max-content;
+  max-width: 40rem;
   min-height: max-content;
-  margin: 0 auto;
+  margin: auto;
   padding: 5rem;
   padding-top: 0;
   padding-bottom: 0;
+  left: 0;
+  right: 0;
   }
 .pob{
   position: relative;
@@ -200,7 +209,7 @@ margin: 0;
   transition: 0.3s;
   top: 0em;
   pointer-events: none;
-  
+  text-align: center;
 }
 
 .complaint textarea span{
@@ -265,4 +274,52 @@ input[type="radio"]{
 }
 .admin-shopkeeper-details{
   width: 100%;
+}
+
+.complaint{
+  width: 100%;
+  padding: 0;
+}
+
+#inputbox{
+  font-size : "2rem"
+}
+::-webkit-input-placeholder {
+  font-size: 1rem;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+     font-size: 1rem;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+     font-size: 1rem;
+}
+
+:-ms-input-placeholder {
+     font-size: 1rem;
+}
+
+.containerfordashboard{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.about-icons{
+  text-align: center;
+}
+.icons{
+  font-size: 1.5rem;
+  text-align: center;
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+
+.hr{
+	width: 150px;
+	height: 2px;
+	background-color: #2196f3;
+	border:0;
+	margin: 30px auto;
 }
