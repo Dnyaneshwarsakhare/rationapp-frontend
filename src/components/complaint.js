@@ -163,11 +163,11 @@ class Complaint extends PureComponent {
         return ( 
             <>
             <Navbar />
-            <div className="complaint mt-4" style={{textAlign:'center'}}>
+            <div className="complaint mt-4 p-6" style={{textAlign:'center'}}>
                 <form onSubmit={this.onSubmit} >
                 <h4><strong> Complaint Form</strong></h4>
                 <div className="hr" />
-                    <div className ="form-group pob mt-3">
+                    <div className ="form-group pob mt-3 ml-4 mr-4">
                             <input type="text" 
                             required
                             name="email"
@@ -182,7 +182,7 @@ class Complaint extends PureComponent {
                             <div className='emailError'>{this.state.errors.email}</div>}
 
                     </div>
-                    <div className ="form-group d-flex flex-row pob mt-3">
+                    <div className ="form-group d-flex flex-row pob mt-3 ml-4 mr-4">
                         <label>Against </label>&nbsp;
                         <select ref="userInput" 
                         required
@@ -200,7 +200,7 @@ class Complaint extends PureComponent {
                         </select>
                     </div>
 
-                    <div className ="form-group d-flex flex-row pob mt-3">
+                    <div className ="form-group d-flex flex-row pob mt-3 ml-4 mr-4">
                             <input type="text" 
                             required
                             name="title"
@@ -212,7 +212,7 @@ class Complaint extends PureComponent {
                             <span>Title</span>
                     </div>
 
-                    <div className ="form-group d-flex flex-row pob">
+                    <div className ="form-group d-flex flex-row pob ml-4 mr-4">
                             
                             <textarea 
                             required
