@@ -42,7 +42,7 @@ class AdminComplaint extends PureComponent {
         {
             this.props.history.push("/admin/admin-complaint");
             trackPromise(
-                axios.get("http://localhost:5000/admin/admin-complaint")
+                axios.get("https://rationapp-backend.herokuapp.com/admin/admin-complaint")
                 .then(res => {
                     this.setState({ complaints : res.data})
                 }))

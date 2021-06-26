@@ -55,7 +55,7 @@ class Ssstockdetails extends PureComponent {
             
             this.props.history.push("/shopkeeper/ssstockdetails/");
             trackPromise(
-                axios.get("http://localhost:5000/shopkeeper/ssstockdetails/details")
+                axios.get("https://rationapp-backend.herokuapp.com/shopkeeper/ssstockdetails/details")
                 .then(res => {
                     this.setState({ stocks : res.data})
                 }))

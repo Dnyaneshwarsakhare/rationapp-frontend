@@ -109,7 +109,7 @@ class Ssuserdetails extends PureComponent {
         console.log(cid);
 
         trackPromise(
-        axios.get("http://localhost:5000/shopkeeper/ssuserdetails/"+cid)
+        axios.get("https://rationapp-backend.herokuapp.com/shopkeeper/ssuserdetails/"+cid)
         .then(res => {
             console.log(res);
             this.setState({ user : res.data})
@@ -117,7 +117,7 @@ class Ssuserdetails extends PureComponent {
         .catch(err => console.log(err)));
         
 
-        axios.get("http://localhost:5000/shopkeeper/ssstockdetails")
+        axios.get("https://rationapp-backend.herokuapp.com/shopkeeper/ssstockdetails")
         .then(res => {
             console.log(res.data)
             this.setState({ stock : res.data})
@@ -249,7 +249,7 @@ class Ssuserdetails extends PureComponent {
         }
         console.log(stock.dalTotalPrice);
         var id = this.state.stock._id;
-        axios.put('http://localhost:5000/shopkeeper/ssuserdetails/stock-update/'+id,stock)
+        axios.put('https://rationapp-backend.herokuapp.com/shopkeeper/ssuserdetails/stock-update/'+id,stock)
         .then(res => {
             console.log("successfully updated"+res.data)
             

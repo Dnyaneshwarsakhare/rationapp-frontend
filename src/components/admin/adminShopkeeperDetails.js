@@ -44,7 +44,7 @@ class AdminShopkeeperDetails extends PureComponent {
         {
             this.props.history.push("/admin/admin-shopkeeper-details");
             trackPromise(
-                axios.get("http://localhost:5000/admin/admin-shopkeeper-details/")
+                axios.get("https://rationapp-backend.herokuapp.com/admin/admin-shopkeeper-details/")
                 .then(res => {
                     this.setState({ users : res.data})
                 }))
@@ -60,7 +60,7 @@ class AdminShopkeeperDetails extends PureComponent {
 
     deleteUser(id){
         trackPromise(
-        axios.delete('http://localhost:5000/admin/admin-shopkeeper-details/'+id)
+        axios.delete('https://rationapp-backend.herokuapp.com/admin/admin-shopkeeper-details/'+id)
         .then(res => {
             console.log(res.data)
             toast.success("Shopkeeper Removed Successfully",{

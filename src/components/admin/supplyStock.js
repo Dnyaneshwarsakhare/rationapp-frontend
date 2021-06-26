@@ -94,7 +94,7 @@ class SupplyStock extends PureComponent {
 
     e.preventDefault();
     console.log(stock);
-    axios.post("http://localhost:5000/admin/supply-stock/", stock)
+    axios.post("https://rationapp-backend.herokuapp.com/admin/supply-stock/", stock)
         .then(res => {
             console.log(res.data)
             toast.success("Ration stock added",{

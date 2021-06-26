@@ -50,7 +50,7 @@ class AdminLogin extends PureComponent {
         
         try{
             
-            const res = await trackPromise( fetch('http://localhost:5000/admin-panel-login',{
+            const res = await trackPromise( fetch('https://rationapp-backend.herokuapp.com/admin-panel-login',{
                 method: 'POST',
                 body : JSON.stringify({ email : user.email , password : user.password}),
                 headers: { "Content-Type":"application/json" }

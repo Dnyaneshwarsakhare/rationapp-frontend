@@ -35,7 +35,7 @@ class AdminProfile extends PureComponent {
 
             // headers = new HttpHeaders().set('Token',localStorage.getItem('Token'));
         trackPromise(
-        axios.get("http://localhost:5000/admin/admin-profile/"+cid, {
+        axios.get("https://rationapp-backend.herokuapp.com/admin/admin-profile/"+cid, {
             headers: {
                 'token': `${localStorage.getItem('Token')}`
             }
@@ -188,7 +188,7 @@ class AdminProfile extends PureComponent {
             var cid=obj["id"];
             console.log(cid);
             trackPromise(
-        axios.post('http://localhost:5000/admin/admin-profile/update/'+cid,user)
+        axios.post('https://rationapp-backend.herokuapp.com/admin/admin-profile/update/'+cid,user)
         .then(res => 
             console.log(res.data),
             window.alert("Updated Successfully")

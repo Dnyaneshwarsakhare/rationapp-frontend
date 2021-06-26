@@ -42,7 +42,7 @@ const EditAdmin = () => {
     var obj=json["user"];
     var cid=obj["id"];
 
-    axios.put("http://localhost:5000/admin/admin-profile/update/"+cid, user)
+    axios.put("https://rationapp-backend.herokuapp.com/admin/admin-profile/update/"+cid, user)
     .then(res => {
         console.log(res);
         
@@ -63,7 +63,7 @@ const EditAdmin = () => {
     var cid=obj["id"];
 
     // const result = await axios.get("http://localhost:5000/shopkeeper/ssprofile/"+cid)
-    axios.get("http://localhost:5000/admin/admin-profile/"+cid, {
+    axios.get("https://rationapp-backend.herokuapp.com/admin/admin-profile/"+cid, {
             headers: {
                 'token': `${localStorage.getItem('Token')}`
             }

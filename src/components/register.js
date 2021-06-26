@@ -161,7 +161,7 @@ class Register extends PureComponent {
         }
 
         try{
-            const res = await fetch('http://localhost:5000/register',{
+            const res = await fetch('https://rationapp-backend.herokuapp.com/register',{
                 method: 'POST',
                 body : JSON.stringify(user),
                 headers: { "Content-Type":"application/json" }

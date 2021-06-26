@@ -34,7 +34,7 @@ class AdminDashboard extends PureComponent {
     }
     getadmin(){
         trackPromise(
-        axios.get("http://localhost:5000/admin/admin-dashboard/users/")
+        axios.get("https://rationapp-backend.herokuapp.com/admin/admin-dashboard/users/")
         .then(res => {
             this.setState({ 
                 count1 : res.data.users.length
@@ -44,7 +44,7 @@ class AdminDashboard extends PureComponent {
     }
     getcomplaints(){
         trackPromise(
-        axios.get("http://localhost:5000/admin/admin-dashboard/comp/")
+        axios.get("https://rationapp-backend.herokuapp.com/admin/admin-dashboard/comp/")
         .then(res => {
             console.log(res);
             this.setState({ 

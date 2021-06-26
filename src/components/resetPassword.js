@@ -34,7 +34,7 @@ class ResetPassword extends PureComponent {
         const id = obj[2];
         const token = obj[3];
 
-        axios.get('http://localhost:5000/reset-password/'+id+'/'+token)
+        axios.get('https://rationapp-backend.herokuapp.com/reset-password/'+id+'/'+token)
         .then(res => 
             console.log(res.data)
             
@@ -96,7 +96,7 @@ class ResetPassword extends PureComponent {
         const token = obj[3];
 
         try{
-            axios.post('http://localhost:5000/reset-password/'+id+'/'+token,user)
+            axios.post('https://rationapp-backend.herokuapp.com/reset-password/'+id+'/'+token,user)
             .then(res => 
                 console.log(res.data),
                 toast.success("successsfull"),

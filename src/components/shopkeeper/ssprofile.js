@@ -37,7 +37,7 @@ class Ssprofile extends PureComponent {
                 this.props.history.push("/login");
             }
             // headers = new HttpHeaders().set('Token',localStorage.getItem('Token'));
-        axios.get("http://localhost:5000/shopkeeper/ssprofile/"+cid, {
+        axios.get("https://rationapp-backend.herokuapp.com/shopkeeper/ssprofile/"+cid, {
             headers: {
                 'token': `${localStorage.getItem('Token')}`
             }
@@ -201,7 +201,7 @@ class Ssprofile extends PureComponent {
         var obj=json["user"];
         var cid=obj["id"];
         
-        axios.put(`http://localhost:5000/shopkeeper/ssprofile/update/`+cid,user)
+        axios.put(`https://rationapp-backend.herokuapp.com/shopkeeper/ssprofile/update/`+cid,user)
         .then(res => {
             console.log(res);
             window.alert("Updated Successfully");

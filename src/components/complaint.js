@@ -85,7 +85,7 @@ class Complaint extends PureComponent {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/complaint')
+        axios.get('https://rationapp-backend.herokuapp.com/complaint')
         .then(res => {
             if(res.data.length >0){
                 this.setState({
@@ -107,7 +107,7 @@ class Complaint extends PureComponent {
         }
         try{
 
-            const res = await fetch('http://localhost:5000/complaint',{
+            const res = await fetch('https://rationapp-backend.herokuapp.com/complaint',{
                 method: 'POST',
                 body : JSON.stringify(complaint),
                 headers: { "Content-Type":"application/json" }

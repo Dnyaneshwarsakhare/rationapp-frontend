@@ -27,7 +27,7 @@ const AddUser = () => {
         var obj=json["user"];
         var cid=obj["id"];
     console.log(user);
-    axios.post("http://localhost:5000/shopkeeper/ssuserdetails/add-user/"+cid, user)
+    axios.post("https://rationapp-backend.herokuapp.com/shopkeeper/ssuserdetails/add-user/"+cid, user)
         .then(res => {
             console.log(res.data)
             toast.success("Ration user added",{

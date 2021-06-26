@@ -57,7 +57,7 @@ class Login extends PureComponent {
         }
         
         
-        await axios.post('http://localhost:5000/forgot-password',useremail,{
+        await axios.post('https://rationapp-backend.herokuapp.com/forgot-password',useremail,{
             headers: {
             'Content-Type': 'application/json'
             }
@@ -83,7 +83,7 @@ class Login extends PureComponent {
         
         try{
             
-            const res = await trackPromise( fetch('http://localhost:5000/login',{
+            const res = await trackPromise( fetch('https://rationapp-backend.herokuapp.com/login',{
                 method: 'POST',
                 body : JSON.stringify(user),
                 headers: { "Content-Type":"application/json" }
