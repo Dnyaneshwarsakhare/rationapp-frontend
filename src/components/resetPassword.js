@@ -24,6 +24,7 @@ class ResetPassword extends PureComponent {
             cfpassword : '',
             errors : {
                 password: '',
+                cfpassword: '',
             }
         };
       }
@@ -57,6 +58,12 @@ class ResetPassword extends PureComponent {
               value != this.state.cfpassword
                   ? 'Not Matched'
                   : 'Matched';
+              break;
+            case 'cfpassword': 
+              errors.cfpassword = 
+              value.length < 6
+                  ? 'Password should be contain min 6 characters'
+                  : '';
               break;
             default:
               break;
@@ -128,10 +135,13 @@ class ResetPassword extends PureComponent {
                             id="inputbox"
                             name = "cfpassword"
                             autoComplete="off"
+                            onInput={this.handleChange}
                             value = {this.state.cfpassword}
                             onChange = {this.onChangeEmail}
                             />
                             <span>Password</span>
+                            {this.state.errors.cfpassword.length > 0 && 
+                            <div className='emailError'>{this.state.errors.cfpassword}</div>}
                             
                     </div>
                     <div className ="form-group pob">
