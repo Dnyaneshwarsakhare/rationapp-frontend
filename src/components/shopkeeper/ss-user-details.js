@@ -252,7 +252,9 @@ class Ssuserdetails extends PureComponent {
         axios.put('https://rationapp-backend.herokuapp.com/shopkeeper/ssuserdetails/stock-update/'+id,stock)
         .then(res => {
             console.log("successfully updated"+res.data)
-            
+            toast.success("Ration Stock Allocated Successfully",{
+                position : "top-center"
+            })
         })
         .catch(err => console.log(err));
 
