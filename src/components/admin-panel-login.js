@@ -109,7 +109,7 @@ class AdminLogin extends PureComponent {
                             value = {this.state.email}
                             onChange = {this.onChangeEmail}
                             />
-                            <span>Username</span>
+                            <span>Email</span>
                             <div className="emailError">{this.state.errormessage.email}</div>
                     </div>
                     <div className ="form-group pob">
