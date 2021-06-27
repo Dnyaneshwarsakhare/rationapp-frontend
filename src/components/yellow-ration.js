@@ -23,19 +23,19 @@ class Yellow extends PureComponent {
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="yellow">
                         <Card.Header><b>RICE / तांदूळ</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.3 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.5 per kg <br/>Qty = 5kg</Card.Title>
                         </Card.Body>
                     </Card>
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="yellow">
                         <Card.Header><b>SUGAR / साखर</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.20 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.8 per kg <br/>Qty = 5kg</Card.Title>
                         </Card.Body>
                     </Card>
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="yellow">
                         <Card.Header><b>WHEAT / गहू</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.2 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.10 per kg <br/>Qty = 5kg</Card.Title>
                         </Card.Body>
                     </Card>
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="yellow">
@@ -47,7 +47,7 @@ class Yellow extends PureComponent {
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="yellow">
                         <Card.Header><b>COARSE GRAINS / डाळ</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.30 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.20 per kg <br/>Qty = 5kg</Card.Title>
                         </Card.Body>
                     </Card>
                     </div>

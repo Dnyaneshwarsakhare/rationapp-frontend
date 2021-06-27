@@ -140,7 +140,7 @@ class Ssuserdetails extends PureComponent {
                 if(user.rationType == "saffron"){
                     if(user.totalFamilyMembers <= 10){
                         this.state.stock.totalRice = user.totalFamilyMembers*2;
-                        this.state.stock.riceTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.riceTotalPrice = user.totalFamilyMembers*2*10;
                         this.state.stock.riceSoldStock = this.state.stock.riceSoldStock +  user.totalFamilyMembers*2;
                         this.state.stock.riceAvailableStock =  this.state.stock.riceAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalSugar = user.totalFamilyMembers*2;
@@ -148,15 +148,15 @@ class Ssuserdetails extends PureComponent {
                         this.state.stock.sugarSoldStock = this.state.stock.sugarSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.sugarAvailableStock =  this.state.stock.sugarAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalWheat = user.totalFamilyMembers*2;
-                        this.state.stock.wheatTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.wheatTotalPrice = user.totalFamilyMembers*2*15;
                         this.state.stock.wheatSoldStock = this.state.stock.wheatSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.wheatAvailableStock =  this.state.stock.wheatAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalOil = user.totalFamilyMembers*2;
-                        this.state.stock.oilTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.oilTotalPrice = user.totalFamilyMembers*2*18;
                         this.state.stock.oilSoldStock = this.state.stock.oilSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.oilAvailableStock =  this.state.stock.oilAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalDal = user.totalFamilyMembers*2;
-                        this.state.stock.dalTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.dalTotalPrice = user.totalFamilyMembers*2*25;
                         this.state.stock.dalSoldStock = this.state.stock.dalSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.dalAvailableStock =  this.state.stock.dalAvailableStock - user.totalFamilyMembers*2;
                     }
@@ -164,11 +164,11 @@ class Ssuserdetails extends PureComponent {
                 if(user.rationType == "white"){
                     if(user.totalFamilyMembers <= 10){
                         this.state.stock.totalRice = user.totalFamilyMembers*2;
-                        this.state.stock.riceTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.riceTotalPrice = user.totalFamilyMembers*2*15;
                         this.state.stock.riceSoldStock = this.state.stock.riceSoldStock +  user.totalFamilyMembers*2;
                         this.state.stock.riceAvailableStock =  this.state.stock.riceAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalSugar = user.totalFamilyMembers*2;
-                        this.state.stock.sugarTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.sugarTotalPrice = user.totalFamilyMembers*2*15;
                         this.state.stock.sugarSoldStock = this.state.stock.sugarSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.sugarAvailableStock =  this.state.stock.sugarAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalWheat = user.totalFamilyMembers*2;
@@ -180,7 +180,7 @@ class Ssuserdetails extends PureComponent {
                         this.state.stock.oilSoldStock = this.state.stock.oilSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.oilAvailableStock =  this.state.stock.oilAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalDal = user.totalFamilyMembers*2;
-                        this.state.stock.dalTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.dalTotalPrice = user.totalFamilyMembers*2*30;
                         this.state.stock.dalSoldStock = this.state.stock.dalSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.dalAvailableStock =  this.state.stock.dalAvailableStock - user.totalFamilyMembers*2;
                     }
@@ -188,19 +188,19 @@ class Ssuserdetails extends PureComponent {
                 if(user.rationType == "yellow"){
                     if(user.totalFamilyMembers <= 10){
                         this.state.stock.totalRice = user.totalFamilyMembers*2;
-                        this.state.stock.riceTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.riceTotalPrice = user.totalFamilyMembers*2*5;
                         this.state.stock.riceSoldStock = this.state.stock.riceSoldStock +  user.totalFamilyMembers*2;
                         this.state.stock.riceAvailableStock =  this.state.stock.riceAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalSugar = user.totalFamilyMembers*2;
-                        this.state.stock.sugarTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.sugarTotalPrice = user.totalFamilyMembers*2*8;
                         this.state.stock.sugarSoldStock = this.state.stock.sugarSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.sugarAvailableStock =  this.state.stock.sugarAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalWheat = user.totalFamilyMembers*2;
-                        this.state.stock.wheatTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.wheatTotalPrice = user.totalFamilyMembers*2*10;
                         this.state.stock.wheatSoldStock = this.state.stock.wheatSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.wheatAvailableStock =  this.state.stock.wheatAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalOil = user.totalFamilyMembers*2;
-                        this.state.stock.oilTotalPrice = user.totalFamilyMembers*2*20;
+                        this.state.stock.oilTotalPrice = user.totalFamilyMembers*2*15;
                         this.state.stock.oilSoldStock = this.state.stock.oilSoldStock + user.totalFamilyMembers*2;
                         this.state.stock.oilAvailableStock =  this.state.stock.oilAvailableStock - user.totalFamilyMembers*2;
                         this.state.stock.totalDal = user.totalFamilyMembers*2;
