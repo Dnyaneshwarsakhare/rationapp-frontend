@@ -22,31 +22,31 @@ class White extends PureComponent {
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="white">
                         <Card.Header><b>RICE / तांदूळ</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.15 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.15 per kg <br/>Qty = 2kg</Card.Title>
                         </Card.Body>
                     </Card>
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="white">
                         <Card.Header><b>SUGAR / साखर</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.15 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.15 per kg <br/>Qty = 2kg</Card.Title>
                         </Card.Body>
                     </Card>
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="white">
                         <Card.Header><b>WHEAT / गहू</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.20 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.20 per kg <br/>Qty = 2kg</Card.Title>
                         </Card.Body>
                     </Card>
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="white">
                         <Card.Header><b>OIL / तेल</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.20 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.20 per kg <br/>Qty = 2kg</Card.Title>
                         </Card.Body>
                     </Card>
                     <Card border="yellow" style={{ width: '18rem' }} className="m-2" id="white">
                         <Card.Header><b>COARSE GRAINS / डाळ</b></Card.Header>
                         <Card.Body>
-                        <Card.Title>Rate = Rs.30 per kg <br/>Qty = 5kg</Card.Title>
+                        <Card.Title>Rate = Rs.30 per kg <br/>Qty = 2kg</Card.Title>
                         </Card.Body>
                     </Card>
                     </div>
