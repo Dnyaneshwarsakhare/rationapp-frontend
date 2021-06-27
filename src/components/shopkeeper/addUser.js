@@ -87,7 +87,7 @@ const AddUser = () => {
               className="form-control form-control-lg"
               placeholder="Enter Ration type (saffron / white / yellow)"
               name="rationType"
-              value={rationType}
+              value={rationType.toLowerCase()}
               onChange={e => onInputChange(e)}
             />
           </div>
