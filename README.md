@@ -1,3 +1,7 @@
+<img alt="npm" src="https://img.shields.io/badge/npm-v7.5.2-brightgreen">
+<img alt="npm" src="https://img.shields.io/badge/Node-v16.1.0-brightgreen">
+<img alt="David" src="https://img.shields.io/david/Dnyaneshwarsakhare/rationapp-frontend">
+
 ﻿# Getting Started with Create React App
 
 ration corruption control system
