@@ -1,6 +1,6 @@
 <img alt="npm" src="https://img.shields.io/badge/npm-v7.5.2-brightgreen">
 <img alt="npm" src="https://img.shields.io/badge/Node-v16.1.0-brightgreen">
-<img alt="Dependencies" src="https://img.shields.io/david/Dnyaneshwarsakhare/rationapp-frontend">
+<img alt="david" src="https://img.shields.io/david/Dnyaneshwarsakhare/rationapp-frontend">
 <img alt="npm" src="https://img.shields.io/badge/license-ISC-brightgreen">
 <img src="https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2FDnyaneshwarsakhare%2Frationapp-frontend" alt="Hits">
 
