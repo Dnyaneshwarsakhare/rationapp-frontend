@@ -130,6 +130,8 @@ class AdminLogin extends PureComponent {
                         <input type="submit" value = "Login" className="btn btn-primary"/>
                     </div>
                 </form>
+                 <i> admin username : admin@gmail.com </i>
+                 <i> admin password : admin 12 <i>
             </div>
 
             <ToastContainer /> 
