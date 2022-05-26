@@ -131,7 +131,7 @@ class AdminLogin extends PureComponent {
                     </div>
                 </form>
                 <div> <i> admin username : admin@gmail.com </i>
-                 <i> admin password : admin 12 <i> </div>
+                 <i> admin password : admin 12 </i> </div>
             </div>
 
             <ToastContainer /> 
