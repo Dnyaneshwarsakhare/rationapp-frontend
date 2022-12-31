@@ -1,7 +1,6 @@
 <img alt="npm" src="https://img.shields.io/badge/npm-v7.5.2-brightgreen">
 <img alt="npm" src="https://img.shields.io/badge/Node-v16.1.0-brightgreen">
 <img alt="npm" src="https://img.shields.io/badge/license-ISC-brightgreen">
-<img src="https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2FDnyaneshwarsakhare%2Frationapp-frontend" alt="Hits">
 
 ﻿# Getting Started with Create React App
 
@@ -11,7 +10,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Live at : https://rationapp-frontend.herokuapp.com/home 
+
 
 ## Available Scripts
 
